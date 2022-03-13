@@ -12,21 +12,35 @@ def determinant(a):
 def divide_row(a, b, divider):
     for i in range(row):
         a[i] = a[i] / divider
-    b = b / divider
+    if b == 0:
+        b = 0
+    else:
+        b = b / divider
     return a, b
 
 
 def triangle_matrix(a, b):
     try:
-        for k in range(row):
+        for k in range(row-1):
+            im = k
+            for i in range(k+1, row):
+                if abs(a[im][k]) < abs(a[i][k]):
+                    im = i
+            if im != k:
+                for j in range(row):
+                    v = a[im][j]
+                    a[im][j] = a[k][j]
+                    a[k][j] = v
+                v = b[0][im]
+                b[0][im] = b[0][k]
+                b[0][k] = v
             for i in range(k + 1, row):
-                if a[k][k] == 0:
-                    raise ZeroDivisionError("Значение числа на главной диагонали при трансформации равно нулю!")
-                mu = a[i][k] / a[k][k]
-                for j in range(k, row):
-                    temp = a[k][k] * float(mu)
-                    a[i][j] = float("{0:.1f}".format(a[i][j])) - float("{0:.1f}".format(temp))
-                b[0][k] -= (b[0][k] * float(mu))
+                v = 1.0 * a[i][k] / a[k][k]
+                a[i][k] = 0
+                b[0][i] = b[0][i] - v * b[0][k]
+                if v != 0:
+                    for j in range(k + 1, row):
+                        a[i][j] = a[i][j] - v * a[k][j]
         return a, b
     except ZeroDivisionError as ex:
         print(ex)
@@ -42,9 +56,9 @@ def result(a, b, deter):
     for i in range(row - 1, -1, -1):
         a[i], b[0][i] = divide_row(a[i], b[0][i], a[i][i])
     x[-1] = b[0][-1]
-    for i in range(row-2, -1, -1):
-        for j in range(row-1, i-1, -1):
-            temp += x[j] * a[i][j]
+    for i in range(row - 2, -1, -1):
+        for j in range(row - 1, -1, -1):
+            temp += (x[j] * a[i][j])
         x[i] = b[0][i] - temp
         temp = 0
     return x
@@ -56,7 +70,8 @@ def deltas(a, b, x):
     for i in range(row):
         for j in range(row):
             temp += a[i][j] * x[j]
-        delta[i] = abs(float("{0:.30f}".format(b[0][i] - temp)))
+        delta[i] = abs(float("{0:.30f}".format(temp - b[0][i])))
+        temp = 0
     return delta
 
 
@@ -86,7 +101,7 @@ try:
         raise IndexError("Размер матрицы должен быть в диапазоне от 2 до 20")
 except ValueError:
     print("Неверные аргументы")
-    sys.exit(0)
+
 except IndexError as e:
     print(e)
     sys.exit(0)
@@ -144,9 +159,10 @@ if indecator == 2:
         print("Корни системы уравнений:")
         x = result(matrix_in_file, coef_of_file_matrix, det)
         for i in range(row):
-            print(x[i])
-        print("Невязки:")
-        print(deltas(matrix_in_file, coef_of_file_matrix, x))
+            print(f"Корень{i+1}: {x[i]}")
+        deltas = deltas(matrix_in_file, coef_of_file_matrix, x)
+        for i in range(row):
+            print(f"Невязка {i+1}: {deltas[i]}")
     except FileNotFoundError:
         print("Файл не найден!")
     except ValueError:
