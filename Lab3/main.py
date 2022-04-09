@@ -1,5 +1,5 @@
-from IOHandler import getdata_input
-from IntegralSolver import trapezoidal_method
+from io import getdata_input
+from trapezoidalMethod import trapezoidal_method
 from data import Data
 print("\tЛабораторная работа #3")
 print("\t Численное интегрирование")
