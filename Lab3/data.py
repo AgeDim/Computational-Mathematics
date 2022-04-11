@@ -1,4 +1,5 @@
 import math
+import sys
 
 
 class Data:
@@ -29,6 +30,8 @@ class Data:
 
     @staticmethod
     def getSecondFunction(x, order):
+        if x == 0:
+            return math.inf
         if order == 0:
             return 1 / x
         else:
@@ -36,11 +39,13 @@ class Data:
 
     @staticmethod
     def getThirdFunction(x, order):
-        exp = math.exp(pow(x, 2) - x)
+        if x == 2:
+            print(f"Разрыв второго рода в точке x={x}")
+            sys.exit(1)
         if order == 0:
-            return 3 * exp
+            return x/(x-2)
         else:
-            return (2 * x - 1) * (6 * x - 3) * exp + 6 * exp
+            return (2*((x/(x-2))-1))/(pow(x-2, 2))
 
     def setEpsilon(self, epsilon):
         self.epsilon = epsilon

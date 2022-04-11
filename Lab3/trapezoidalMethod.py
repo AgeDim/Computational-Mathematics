@@ -29,6 +29,7 @@ def trapezoidal_method(data):
                     result = result + leftY + rightY
         result *= (step / 2)
         n *= 2
+        print(n)
     try:
         if abs(error) > abs(result):
             raise ArithmeticError("Коэффициент R больше, чем полученный результат. Возможно, интеграл расходится.")

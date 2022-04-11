@@ -1,4 +1,4 @@
-from io import getdata_input
+from Lab3.io import getdata_input
 from trapezoidalMethod import trapezoidal_method
 from data import Data
 print("\tЛабораторная работа #3")
