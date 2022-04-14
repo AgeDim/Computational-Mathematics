@@ -12,8 +12,8 @@ def trapezoidal_method(data):
         result = 0
         step = (Data.getUpperBound(data) - Data.getLowerBound(data)) / n
         for i in range(n):
-            leftY = Data.getFunction(data, Data.getLowerBound(data) + step * (i+1), 0)
-            rightY = Data.getFunction(data, Data.getLowerBound(data) + step * i, 0)
+            leftY = Data.getFunction(data, Data.getLowerBound(data) + step * i, 0)
+            rightY = Data.getFunction(data, Data.getLowerBound(data) + step * (i+1), 0)
             isNormalLeftY = math.isfinite(leftY)
             isNormalRightY = math.isfinite(rightY)
             if not isNormalRightY:
