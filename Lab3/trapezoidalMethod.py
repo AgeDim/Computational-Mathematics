@@ -12,8 +12,8 @@ def trapezoidal_method(data):
         result = 0
         step = (Data.getUpperBound(data) - Data.getLowerBound(data)) / n
         for i in range(n):
-            leftY = Data.getFunction(data, Data.getLowerBound(data) + step * i, 0)
-            rightY = Data.getFunction(data, Data.getLowerBound(data) + step * (i + 1), 0)
+            leftY = Data.getFunction(data, Data.getLowerBound(data) + step * (i+1), 0)
+            rightY = Data.getFunction(data, Data.getLowerBound(data) + step * i, 0)
             isNormalLeftY = math.isfinite(leftY)
             isNormalRightY = math.isfinite(rightY)
             if not isNormalRightY:
@@ -28,8 +28,7 @@ def trapezoidal_method(data):
                 else:
                     result = result + leftY + rightY
         result *= (step / 2)
-        n *= 2
-        print(n)
+        n += 2
     try:
         if abs(error) > abs(result):
             raise ArithmeticError("Коэффициент R больше, чем полученный результат. Возможно, интеграл расходится.")

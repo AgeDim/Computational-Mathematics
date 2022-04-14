@@ -33,9 +33,9 @@ class Data:
         if x == 0:
             return math.inf
         if order == 0:
-            return 1 / x
+            return math.sin(x) / x
         else:
-            return 2 / pow(x, 3)
+            return (-math.sin(x) - ((2 * math.cos(x)) / x) + ((2 * math.sin(x)) / pow(x, 2))) / x
 
     @staticmethod
     def getThirdFunction(x, order):
@@ -43,9 +43,9 @@ class Data:
             print(f"Разрыв второго рода в точке x={x}")
             sys.exit(1)
         if order == 0:
-            return x/(x-2)
+            return x / (x - 2)
         else:
-            return (2*((x/(x-2))-1))/(pow(x-2, 2))
+            return (2 * ((x / (x - 2)) - 1)) / (pow(x - 2, 2))
 
     def setEpsilon(self, epsilon):
         self.epsilon = epsilon
