@@ -36,5 +36,4 @@ def drawingFunction(data, splines, xf, yf):
     plt.plot(xData, yData, 'o')
     plt.plot(xData, yData2, 'o')
     plt.grid(True)
-    plt.legend()
     plt.show(block=False)
