@@ -1,25 +1,45 @@
-import sys
+swapping = 1
+
+def getTriangularMatrix(matrix, size):
+    triangularMatrix = matrix
+    global swapping
+    for indexCurrentString in range(size):
+        triangularMatrix = columnSwapping(triangularMatrix, indexCurrentString, size)
+        triangularMatrix = zeroingColumn(triangularMatrix, indexCurrentString, size)
+    determinant = findDeterminant(triangularMatrix, size) * swapping
+    return triangularMatrix
 
 
-def makeTriangularMatrix(a, size):
-    try:
-        for k in range(size - 1):
-            im = k
-            for i in range(k + 1, size):
-                if abs(a[im][k]) < abs(a[i][k]):
-                    im = i
-            if im != k:
-                for j in range(size):
-                    v = a[im][j]
-                    a[im][j] = a[k][j]
-                    a[k][j] = v
-            for i in range(k + 1, size):
-                v = 1.0 * a[i][k] / a[k][k]
-                a[i][k] = 0
-                if v != 0:
-                    for j in range(k + 1, size):
-                        a[i][j] = a[i][j] - v * a[k][j]
-        return a
-    except ZeroDivisionError as ex:
-        print(ex)
-        sys.exit(0)
+def columnSwapping(matrix, numberString, matrixSize):
+    returnMatrix = matrix
+    tmpNumberString = numberString
+    firstElement = matrix[numberString][numberString]
+    if firstElement == 0:
+        while firstElement == 0 and tmpNumberString != matrixSize - 1:
+            tmpString = matrix[numberString]
+            matrix[numberString] = matrix[tmpNumberString + 1]
+            matrix[tmpNumberString + 1] = tmpString
+            firstElement = returnMatrix[numberString][numberString]
+            tmpNumberString += 1
+            global swapping
+            swapping = swapping * (-1)
+    return returnMatrix
+
+
+def zeroingColumn(matrix, numberColumn, matrixSize):
+    resultMatrix = matrix
+    for i in range(numberColumn + 1, matrixSize):
+        if matrix[numberColumn][numberColumn] == 0:
+            break
+        coefficient = (-1) * matrix[i][numberColumn] / matrix[numberColumn][numberColumn]
+        for j in range(matrixSize+1):
+            resultMatrix[i][j] = resultMatrix[i][j] + matrix[numberColumn][j] * coefficient
+    return resultMatrix
+
+
+def findDeterminant(matrix, size):
+    det = 1
+    for i in range(size):
+        det = det * matrix[i][i]
+    return det
+

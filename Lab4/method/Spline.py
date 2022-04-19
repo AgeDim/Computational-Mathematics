@@ -14,5 +14,7 @@ class Spline:
         return self.xi
 
     def getF(self, x, i):
-        return self.a[i] + self.b[i] * (x - self.xi[i]) + self.c[i] * (x - self.xi[i]) * (x - self.xi[i]) + self.d[
-            i] * (x - self.xi[i]) * (x - self.xi[i]) * (x - self.xi[i])
+        return float(self.a[i]) + float(self.b[i]) * (x - float(self.xi[i])) + float(self.c[i]) * (
+                    x - float(self.xi[i])) * (x - float(self.xi[i])) + float(self.d[
+                                                                                 i]) * (x - float(self.xi[i])) * (
+                           x - float(self.xi[i])) * (x - float(self.xi[i]))
