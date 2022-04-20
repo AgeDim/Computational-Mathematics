@@ -4,7 +4,6 @@ from data import Data
 from graphics import drawingFunction
 
 func, x = getData.getdata_input()
-
 data = Data(func)
 y = [0] * len(x)
 for i in range(len(x)):

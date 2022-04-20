@@ -33,7 +33,7 @@ class Data:
 
     @staticmethod
     def getFourthFunction(x, order):
-        return 3 * math.sin(x/2)
+        return 3 * math.cos(x/2)
 
     def setFunctionType(self, functionType):
         self.functionType = functionType

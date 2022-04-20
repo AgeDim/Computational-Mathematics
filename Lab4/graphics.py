@@ -23,6 +23,10 @@ def drawingFunction(data, splines, xf, yf):
         xData[i] = x
         yData[i] = splines.getF(x, k)
         yData2[i] = data.getFunction(float(x), 0)
+    else:
+        xData = xData[0:i]
+        yData = yData[0:i]
+        yData2 = yData2[0:i]
     plt.gcf().canvas.set_window_title("График")
     ax = plt.gca()
     ax.spines['left'].set_position('zero')
@@ -33,7 +37,7 @@ def drawingFunction(data, splines, xf, yf):
             transform=ax.get_yaxis_transform(), clip_on=False)
     ax.plot(0, 1, marker="^", ms=5, color='k',
             transform=ax.get_xaxis_transform(), clip_on=False)
-    plt.plot(xData, yData, 'o')
-    plt.plot(xData, yData2, 'o')
+    plt.plot(xData, yData, ':', linewidth=2)
+    plt.plot(xData, yData2, linewidth=4)
     plt.grid(True)
     plt.show(block=False)

@@ -16,18 +16,18 @@ def getdata_input():
         except ValueError:
             print("Введенные данные должны быть числом")
 
-    print("\nВведите количество корней.")
+    print("\nВведите количество точек.")
     while True:
         try:
-            a = int(input("Количество корней: "))
+            a = int(input("Количество точек: "))
             if a <= 1:
                 raise AttributeError
             break
         except AttributeError:
-            print("Колличесво корней должно быть больше 1!")
+            print("Количесво точек должно быть больше 1!")
         except ValueError:
             print("Введенные данные должны быть числом")
     x = [0] * a
     for i in range(0, a):
-        x[i] = input(f"Введите {i+1} корень ")
+        x[i] = input(f"Введите {i+1} точку ")
     return func_id, x
