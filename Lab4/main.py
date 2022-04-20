@@ -13,6 +13,3 @@ for i in range(len(x)):
 methodSpline = MethodSpline(x, y, len(x))
 spline = methodSpline.getSpline()
 drawingFunction(data, spline, x, y)
-
-
-
