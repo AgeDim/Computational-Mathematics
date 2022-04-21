@@ -37,7 +37,7 @@ def drawingFunction(data, splines, xf, yf):
             transform=ax.get_yaxis_transform(), clip_on=False)
     ax.plot(0, 1, marker="^", ms=5, color='k',
             transform=ax.get_xaxis_transform(), clip_on=False)
-    plt.plot(xData, yData, ':', linewidth=2)
-    plt.plot(xData, yData2, linewidth=4)
+    plt.plot(xData, yData, linewidth=4, c='lightgreen')
+    plt.plot(xData, yData2, '-.', linewidth=2, c='orange')
     plt.grid(True)
     plt.show(block=False)
