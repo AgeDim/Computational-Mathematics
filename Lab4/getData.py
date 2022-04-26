@@ -3,7 +3,7 @@ def getdata_input():
     print("\nВыберите функцию.")
     print(" 1 — 2x - 3")
     print(" 2 — x^2 - x - 6")
-    print(" 3 — log2(x)")
+    print(" 3 — log2(x) При x > 0")
     print(" 4 — 3 sin(x/2)")
     while True:
         try:

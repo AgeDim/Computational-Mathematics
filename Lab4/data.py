@@ -1,4 +1,5 @@
 import math
+import sys
 
 
 class Data:
@@ -21,7 +22,7 @@ class Data:
 
     @staticmethod
     def getFirstFunction(x, order):
-        return 2*x - 3
+        return 2 * x - 3
 
     @staticmethod
     def getSecondFunction(x, order):
@@ -29,11 +30,15 @@ class Data:
 
     @staticmethod
     def getThirdFunction(x, order):
+        if x < 0:
+            print(
+                "Ну как так то! Вы же знаете что логарифм не может принимать отрицательные значения. Не нужно ломать мою прогу.")
+            sys.exit(-228)
         return math.log(x, 2)
 
     @staticmethod
     def getFourthFunction(x, order):
-        return 3 * math.cos(x/2)
+        return 3 * math.cos(x / 2)
 
     def setFunctionType(self, functionType):
         self.functionType = functionType
